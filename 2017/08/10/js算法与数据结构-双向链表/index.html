@@ -1,0 +1,743 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="双向链表双向链表具有单链表的所有功能，并将其扩展为在链表中可以进行双向遍历。 换句话说，我们可从链表中第一个节点遍历到到最后一个节点；也可以从最后一个节点遍历到第一个节点。 在本节中，我们将重点关注双向链表和单链列表之间的差异。 双向链表的操作我们的链表将包括两个构造函数：Node和DoublyList。看看他们是怎样运作的。 Nodedata 存储数据。next 指向链表中下一个节点的指针。pr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js算法与数据结构-双向链表">
+<meta property="og:url" content="http://yoursite.com/2017/08/10/js算法与数据结构-双向链表/index.html">
+<meta property="og:site_name" content="小雨滴">
+<meta property="og:description" content="双向链表双向链表具有单链表的所有功能，并将其扩展为在链表中可以进行双向遍历。 换句话说，我们可从链表中第一个节点遍历到到最后一个节点；也可以从最后一个节点遍历到第一个节点。 在本节中，我们将重点关注双向链表和单链列表之间的差异。 双向链表的操作我们的链表将包括两个构造函数：Node和DoublyList。看看他们是怎样运作的。 Nodedata 存储数据。next 指向链表中下一个节点的指针。pr">
+<meta property="og:updated_time" content="2017-08-10T06:02:57.066Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js算法与数据结构-双向链表">
+<meta name="twitter:description" content="双向链表双向链表具有单链表的所有功能，并将其扩展为在链表中可以进行双向遍历。 换句话说，我们可从链表中第一个节点遍历到到最后一个节点；也可以从最后一个节点遍历到第一个节点。 在本节中，我们将重点关注双向链表和单链列表之间的差异。 双向链表的操作我们的链表将包括两个构造函数：Node和DoublyList。看看他们是怎样运作的。 Nodedata 存储数据。next 指向链表中下一个节点的指针。pr">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/10/js算法与数据结构-双向链表/"/>
+
+
+
+
+
+  <title> js算法与数据结构-双向链表 | 小雨滴 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小雨滴</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/10/js算法与数据结构-双向链表/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="H-J">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小雨滴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                js算法与数据结构-双向链表
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-10T09:38:55+08:00">
+                2017-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h2><p>双向链表具有单链表的所有功能，并将其扩展为在链表中可以进行双向遍历。 换句话说，我们可从链表中第一个节点遍历到到最后一个节点；也可以从最后一个节点遍历到第一个节点。</p>
+<p>在本节中，我们将重点关注双向链表和单链列表之间的差异。</p>
+<h2 id="双向链表的操作"><a href="#双向链表的操作" class="headerlink" title="双向链表的操作"></a>双向链表的操作</h2><p>我们的链表将包括两个构造函数：Node和DoublyList。看看他们是怎样运作的。</p>
+<h3 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h3><p>data 存储数据。<br>next 指向链表中下一个节点的指针。<br>previous 指向链表中前一个节点的指针。<br>DoublyList</p>
+<p>_length 保存链表中节点的个数<br>head 指定一个节点作为链表的头节点<br>tail 指定一个节点作为链表的尾节点<br>add(value) 向链表中添加一个节点<br>searchNodeAt(position) 找到在列表中指定位置 n 上的节点<br>remove(position) 删除链表中指定位置上的节点<br>双向链表的实现<br>现在开始写代码！</p>
+<p>在实现中，将会创建一个名为Node的构造函数：</p>
+<p>function Node(value) {<br>    this.data = value;<br>    this.previous = null;<br>    this.next = null;<br>}<br>想要实现双向链表的双向遍历，我们需要指向链表两个方向的属性。这些属性被命名为previous和next。</p>
+<p>接下来，我们需要实现DoublyList并添加三个属性：_length，head和tail。</p>
+<p>与单链表不同，双向链表包含对链表开头和结尾节点的引用。 由于DoublyList刚被实例化时并不包含任何节点，所以head和tail的默认值都被设置为null。</p>
+<p>function DoublyList() {<br>    this._length = 0;<br>    this.head = null;<br>    this.tail = null;<br>}</p>
+<h2 id="双向链表的方法"><a href="#双向链表的方法" class="headerlink" title="双向链表的方法"></a>双向链表的方法</h2><p>接下来我们讨论以下方法：add(value), remove(position), 和 searchNodeAt(position)。所有这些方法都用于单链表; 然而，它们必须备重写为可以双向遍历。</p>
+<h2 id="方法1-3-add-value"><a href="#方法1-3-add-value" class="headerlink" title="方法1/3 add(value)"></a>方法1/3 add(value)</h2><p>DoublyList.prototype.add = function(value) {<br>    var node = new Node(value);</p>
+<pre><code>if (this._length) {
+    this.tail.next = node;
+    node.previous = this.tail;
+    this.tail = node;
+} else {
+    this.head = node;
+    this.tail = node;
+}
+
+this._length++;
+
+return node;
+</code></pre><p>};</p>
+<p>在这个方法中，存在两种可能。首先，如果链表是空的，则给它的head和tail分配节点。其次，如果链表中已经存在节点，则查找链表的尾部并把心节点分配给tail.next；同样，我们需要配置新的尾部以供进行双向遍历。换句话说，我们需要把tail.previous设置为原来的尾部。</p>
+<h2 id="方法2-3-searchNodeAt-position"><a href="#方法2-3-searchNodeAt-position" class="headerlink" title="方法2/3 searchNodeAt(position)"></a>方法2/3 searchNodeAt(position)</h2><p>searchNodeAt(position)的实现与单链表相同。 如果你忘记了如何实现它，请通过下面的代码回忆：</p>
+<p>DoublyList.prototype.searchNodeAt = function(position) {<br>    var currentNode = this.head,<br>        length = this._length,<br>        count = 1,<br>        message = {failure: ‘Failure: non-existent node in this list.’};</p>
+<pre><code>// 1st use-case: an invalid position 
+if (length === 0 || position &lt; 1 || position &gt; length) {
+    throw new Error(message.failure);
+}
+
+// 2nd use-case: a valid position 
+while (count &lt; position) {
+    currentNode = currentNode.next;
+    count++;
+}
+
+return currentNode;
+</code></pre><p>};</p>
+<h2 id="方法3-3-remove-position"><a href="#方法3-3-remove-position" class="headerlink" title="方法3/3 remove(position)"></a>方法3/3 remove(position)</h2><p>理解这个方法是最具挑战性的。我先写出代码，然后再解释它。</p>
+<p>DoublyList.prototype.remove = function(position) {<br>    var currentNode = this.head,<br>        length = this._length,<br>        count = 1,<br>        message = {failure: ‘Failure: non-existent node in this list.’},<br>        beforeNodeToDelete = null,<br>        nodeToDelete = null,<br>        deletedNode = null;</p>
+<pre><code>// 1st use-case: an invalid position
+if (length === 0 || position &lt; 1 || position &gt; length) {
+    throw new Error(message.failure);
+}
+
+// 2nd use-case: the first node is removed
+if (position === 1) {
+    this.head = currentNode.next;
+
+    // 2nd use-case: there is a second node
+    if (!this.head) {
+        this.head.previous = null;
+    // 2nd use-case: there is no second node
+    } else {
+        this.tail = null;
+    }
+
+// 3rd use-case: the last node is removed
+} else if (position === this._length) {
+    this.tail = this.tail.previous;
+    this.tail.next = null;
+// 4th use-case: a middle node is removed
+} else {
+    while (count &lt; position) {
+        currentNode = currentNode.next;
+        count++;
+    }
+
+    beforeNodeToDelete = currentNode.previous;
+    nodeToDelete = currentNode;
+    afterNodeToDelete = currentNode.next;
+
+    beforeNodeToDelete.next = afterNodeToDelete;
+    afterNodeToDelete.previous = beforeNodeToDelete;
+    deletedNode = nodeToDelete;
+    nodeToDelete = null;
+}
+
+this._length--;
+
+return message.success;
+</code></pre><p>};<br>remove(position) 处理以下四种情况：</p>
+<p>如果remove(position)的参数传递的位置存在, 将会抛出一个错误。<br>如果remove(position)的参数传递的位置是链表的第一个节点（head），将把head赋值给deletedNode，然后把head重新分配到链表中的下一个节点。 此时，我们必须考虑链表中否存在多个节点。 如果答案为否，头部将被分配为null，之后进入if-else语句的if部分。 在if的代码中，还必须将tail设置为null —— 换句话说，我们返回到一个空的双向链表的初始状态。如果删除列表中的第一个节点，并且链表中存在多个节点，那么我们输入if-else语句的else部分。 在这种情况下，我们必须正确地将head的previous属性设置为null —— 在链表的头前面是没有节点的。<br>如果remove(position)的参数传递的位置是链表的尾部，首先把tail赋值给deletedNode，然后tail被重新赋值为尾部之前的那个节点，最后新尾部后面没有其他节点，需要将其next值设置为null。<br>这里发生了很多事情，所以我将重点关注逻辑，而不是每一行代码。 一旦CurrentNode指向的节点是将要被remove(position)删除的节点时，就退出while循环。这时我们把nodeToDelete之后的节点重新赋值给beforeNodeToDelete.next。相应的， 把nodeToDelete之前的节点重新赋值给afterNodeToDelete.previous。——换句话说，我们把指向已删除节点的指针，改为指向正确的节点。最后，把nodeToDelete赋值为null。<br>最后，把链表的长度减1，返回deletedNode。</p>
+<p>以上摘自网上素材</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/10/js算法与数据结构-队列/" rel="next" title="js算法与数据结构-队列">
+                <i class="fa fa-chevron-left"></i> js算法与数据结构-队列
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/10/js算法与数据结构-单向链表/" rel="prev" title="js算法与数据结构-单向链表">
+                js算法与数据结构-单向链表 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="H-J" />
+          <p class="site-author-name" itemprop="name">H-J</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#双向链表"><span class="nav-number">1.</span> <span class="nav-text">双向链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双向链表的操作"><span class="nav-number">2.</span> <span class="nav-text">双向链表的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Node"><span class="nav-number">2.1.</span> <span class="nav-text">Node</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双向链表的方法"><span class="nav-number">3.</span> <span class="nav-text">双向链表的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法1-3-add-value"><span class="nav-number">4.</span> <span class="nav-text">方法1/3 add(value)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法2-3-searchNodeAt-position"><span class="nav-number">5.</span> <span class="nav-text">方法2/3 searchNodeAt(position)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法3-3-remove-position"><span class="nav-number">6.</span> <span class="nav-text">方法3/3 remove(position)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">H-J</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
