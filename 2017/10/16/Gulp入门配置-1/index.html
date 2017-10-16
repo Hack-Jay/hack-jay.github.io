@@ -89,13 +89,13 @@
 
 <meta name="description" content="简介：    gulp是前端开发过程中的代码构建工具    gulp是基于Nodejs的自动任务运行器， 她能自动化地完成 javascript/coffee/sass/less/html/image/css 等文件的的测试、检查、合并、压缩、格式化、浏览器自动刷新、部署文件生成，并监听文件在改动后重复指定的这些步骤。在实现上，她借鉴了Unix操作系统的管道（pipe）思想，前一级的输出，直接变成">
 <meta property="og:type" content="article">
-<meta property="og:title" content="1.md">
-<meta property="og:url" content="hack-jay.github.io/2017/10/16/Gulp入门配置/index.html">
+<meta property="og:title" content="Gulp入门配置">
+<meta property="og:url" content="hack-jay.github.io/2017/10/16/Gulp入门配置-1/index.html">
 <meta property="og:site_name" content="小雨滴">
 <meta property="og:description" content="简介：    gulp是前端开发过程中的代码构建工具    gulp是基于Nodejs的自动任务运行器， 她能自动化地完成 javascript/coffee/sass/less/html/image/css 等文件的的测试、检查、合并、压缩、格式化、浏览器自动刷新、部署文件生成，并监听文件在改动后重复指定的这些步骤。在实现上，她借鉴了Unix操作系统的管道（pipe）思想，前一级的输出，直接变成">
-<meta property="og:updated_time" content="2017-10-16T09:37:44.086Z">
+<meta property="og:updated_time" content="2017-10-16T09:42:33.761Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="1.md">
+<meta name="twitter:title" content="Gulp入门配置">
 <meta name="twitter:description" content="简介：    gulp是前端开发过程中的代码构建工具    gulp是基于Nodejs的自动任务运行器， 她能自动化地完成 javascript/coffee/sass/less/html/image/css 等文件的的测试、检查、合并、压缩、格式化、浏览器自动刷新、部署文件生成，并监听文件在改动后重复指定的这些步骤。在实现上，她借鉴了Unix操作系统的管道（pipe）思想，前一级的输出，直接变成">
 
 
@@ -124,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="hack-jay.github.io/2017/10/16/Gulp入门配置/"/>
+  <link rel="canonical" href="hack-jay.github.io/2017/10/16/Gulp入门配置-1/"/>
 
 
 
 
 
-  <title> 1.md | 小雨滴 </title>
+  <title> Gulp入门配置 | 小雨滴 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -249,7 +249,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="hack-jay.github.io/2017/10/16/Gulp入门配置/">
+    <link itemprop="mainEntityOfPage" href="hack-jay.github.io/2017/10/16/Gulp入门配置-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="H-J">
@@ -270,7 +270,7 @@
             
             
               
-                1.md
+                Gulp入门配置
               
             
           </h1>
@@ -285,7 +285,7 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-16T17:08:38+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-16T17:41:54+08:00">
                 2017-10-16
               </time>
             
@@ -325,7 +325,7 @@
 <h2 id="新建gulpfile-js文件"><a href="#新建gulpfile-js文件" class="headerlink" title="新建gulpfile.js文件"></a>新建gulpfile.js文件</h2><p>首先安装依赖包 npm install gulp –save-dev</p>
 <p>gulpfile.js是gulp项目的配置文件，一般位于根目录下<br>大概结构如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//导入工具包 require('node_modules里对应模块')</span></div><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>), <span class="comment">//本地安装gulp所用到的地方</span></div><div class="line">    less = <span class="built_in">require</span>(<span class="string">'gulp-less'</span>);</div><div class="line"> </div><div class="line"><span class="comment">//定义一个testLess任务（自定义任务名称）</span></div><div class="line">gulp.task(<span class="string">'testLess'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src(<span class="string">'src/less/index.less'</span>) <span class="comment">//该任务针对的文件</span></div><div class="line">        .pipe(less()) <span class="comment">//该任务调用的模块</span></div><div class="line">        .pipe(gulp.dest(<span class="string">'src/css'</span>)); <span class="comment">//将会在src/css下生成index.css</span></div><div class="line">&#125;);</div><div class="line"> </div><div class="line">gulp.task(<span class="string">'default'</span>,[<span class="string">'testLess'</span>, <span class="string">'elseTask'</span>]); <span class="comment">//定义默认任务 elseTask为其他任务，该示例没有定义elseTask任务</span></div><div class="line"> </div><div class="line"><span class="comment">//gulp.task(name[, deps], fn) 定义任务  name：任务名称 deps：依赖任务名称 fn：回调函数</span></div><div class="line"><span class="comment">//gulp.src(globs[, options]) 执行任务处理的文件  globs：处理的文件路径(字符串或者字符串数组) </span></div><div class="line"><span class="comment">//gulp.dest(path[, options]) 处理完后文件生成路径</span></div><div class="line"></div></pre></td></tr></table></figure></p>
 <p>运行gulp：<br>gulp [项目名称] 或直接gulp</p>
-<h3 id="配置gulp-livereload-自动刷新"><a href="#配置gulp-livereload-自动刷新" class="headerlink" title="配置gulp-livereload 自动刷新"></a>配置gulp-livereload 自动刷新</h3><p>代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    less = <span class="built_in">require</span>(<span class="string">'gulp-less'</span>),</div><div class="line">    livereload = <span class="built_in">require</span>(<span class="string">'gulp-livereload'</span>);</div><div class="line"> </div><div class="line">gulp.task(<span class="string">'less'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src(<span class="string">'src/less/*.less'</span>)</div><div class="line">        .pipe(less())</div><div class="line">        .pipe(gulp.dest(<span class="string">'src/css'</span>))</div><div class="line">        .pipe(livereload());</div><div class="line">&#125;);</div><div class="line"> </div><div class="line"><span class="comment">//特别注意：若编译less的时候，同时执行其他操作，有可能引起页面刷新，而不是将样式植入页面</span></div><div class="line"><span class="comment">//例如下面任务同时生成sourcemap：</span></div><div class="line"><span class="comment">//var sourcemaps = require('gulp-sourcemaps');</span></div><div class="line"><span class="comment">//gulp.task('less', function () &#123;</span></div><div class="line"><span class="comment">//    gulp.src(['src/less/*.less'])</span></div><div class="line"><span class="comment">//        .pipe(sourcemaps.init())</span></div><div class="line"><span class="comment">//        .pipe(less())</span></div><div class="line"><span class="comment">//        .pipe(sourcemaps.write('./'))</span></div><div class="line"><span class="comment">//        .pipe(gulp.dest('src/css'))</span></div><div class="line"><span class="comment">//        .pipe(livereload());</span></div><div class="line"><span class="comment">//&#125;);</span></div><div class="line"> </div><div class="line">gulp.task(<span class="string">'watch'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    livereload.listen();</div><div class="line">    gulp.watch(<span class="string">'src/less/**/*.less'</span>, [<span class="string">'less'</span>]);</div><div class="line">&#125;);</div><div class="line"></div></pre></td></tr></table></figure><br>执行代码 gulp watch</p>
+<h2 id="配置gulp-livereload-自动刷新"><a href="#配置gulp-livereload-自动刷新" class="headerlink" title="配置gulp-livereload 自动刷新"></a>配置gulp-livereload 自动刷新</h2><p>代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    less = <span class="built_in">require</span>(<span class="string">'gulp-less'</span>),</div><div class="line">    livereload = <span class="built_in">require</span>(<span class="string">'gulp-livereload'</span>);</div><div class="line"> </div><div class="line">gulp.task(<span class="string">'less'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src(<span class="string">'src/less/*.less'</span>)</div><div class="line">        .pipe(less())</div><div class="line">        .pipe(gulp.dest(<span class="string">'src/css'</span>))</div><div class="line">        .pipe(livereload());</div><div class="line">&#125;);</div><div class="line"> </div><div class="line"><span class="comment">//特别注意：若编译less的时候，同时执行其他操作，有可能引起页面刷新，而不是将样式植入页面</span></div><div class="line"><span class="comment">//例如下面任务同时生成sourcemap：</span></div><div class="line"><span class="comment">//var sourcemaps = require('gulp-sourcemaps');</span></div><div class="line"><span class="comment">//gulp.task('less', function () &#123;</span></div><div class="line"><span class="comment">//    gulp.src(['src/less/*.less'])</span></div><div class="line"><span class="comment">//        .pipe(sourcemaps.init())</span></div><div class="line"><span class="comment">//        .pipe(less())</span></div><div class="line"><span class="comment">//        .pipe(sourcemaps.write('./'))</span></div><div class="line"><span class="comment">//        .pipe(gulp.dest('src/css'))</span></div><div class="line"><span class="comment">//        .pipe(livereload());</span></div><div class="line"><span class="comment">//&#125;);</span></div><div class="line"> </div><div class="line">gulp.task(<span class="string">'watch'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    livereload.listen();</div><div class="line">    gulp.watch(<span class="string">'src/less/**/*.less'</span>, [<span class="string">'less'</span>]);</div><div class="line">&#125;);</div><div class="line"></div></pre></td></tr></table></figure><br>执行代码 gulp watch</p>
 
       
     </div>
@@ -481,7 +481,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#新建gulpfile-js文件"><span class="nav-number">1.</span> <span class="nav-text">新建gulpfile.js文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置gulp-livereload-自动刷新"><span class="nav-number">1.1.</span> <span class="nav-text">配置gulp-livereload 自动刷新</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#新建gulpfile-js文件"><span class="nav-number">1.</span> <span class="nav-text">新建gulpfile.js文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置gulp-livereload-自动刷新"><span class="nav-number">2.</span> <span class="nav-text">配置gulp-livereload 自动刷新</span></a></li></ol></div>
             
 
           </div>

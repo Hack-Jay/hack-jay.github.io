@@ -247,7 +247,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="hack-jay.github.io/2017/10/16/Gulp入门配置/">
+    <link itemprop="mainEntityOfPage" href="hack-jay.github.io/2017/10/16/Gulp入门配置-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="H-J">
@@ -269,8 +269,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/10/16/Gulp入门配置/" itemprop="url">
-                  1.md
+                <a class="post-title-link" href="/2017/10/16/Gulp入门配置-1/" itemprop="url">
+                  Gulp入门配置
                 </a>
               
             
@@ -286,7 +286,7 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-16T17:08:38+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-16T17:41:54+08:00">
                 2017-10-16
               </time>
             
@@ -328,7 +328,7 @@
 <h2 id="新建gulpfile-js文件"><a href="#新建gulpfile-js文件" class="headerlink" title="新建gulpfile.js文件"></a>新建gulpfile.js文件</h2><p>首先安装依赖包 npm install gulp –save-dev</p>
 <p>gulpfile.js是gulp项目的配置文件，一般位于根目录下<br>大概结构如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//导入工具包 require('node_modules里对应模块')</span></div><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>), <span class="comment">//本地安装gulp所用到的地方</span></div><div class="line">    less = <span class="built_in">require</span>(<span class="string">'gulp-less'</span>);</div><div class="line"> </div><div class="line"><span class="comment">//定义一个testLess任务（自定义任务名称）</span></div><div class="line">gulp.task(<span class="string">'testLess'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src(<span class="string">'src/less/index.less'</span>) <span class="comment">//该任务针对的文件</span></div><div class="line">        .pipe(less()) <span class="comment">//该任务调用的模块</span></div><div class="line">        .pipe(gulp.dest(<span class="string">'src/css'</span>)); <span class="comment">//将会在src/css下生成index.css</span></div><div class="line">&#125;);</div><div class="line"> </div><div class="line">gulp.task(<span class="string">'default'</span>,[<span class="string">'testLess'</span>, <span class="string">'elseTask'</span>]); <span class="comment">//定义默认任务 elseTask为其他任务，该示例没有定义elseTask任务</span></div><div class="line"> </div><div class="line"><span class="comment">//gulp.task(name[, deps], fn) 定义任务  name：任务名称 deps：依赖任务名称 fn：回调函数</span></div><div class="line"><span class="comment">//gulp.src(globs[, options]) 执行任务处理的文件  globs：处理的文件路径(字符串或者字符串数组) </span></div><div class="line"><span class="comment">//gulp.dest(path[, options]) 处理完后文件生成路径</span></div><div class="line"></div></pre></td></tr></table></figure></p>
 <p>运行gulp：<br>gulp [项目名称] 或直接gulp</p>
-<h3 id="配置gulp-livereload-自动刷新"><a href="#配置gulp-livereload-自动刷新" class="headerlink" title="配置gulp-livereload 自动刷新"></a>配置gulp-livereload 自动刷新</h3><p>代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    less = <span class="built_in">require</span>(<span class="string">'gulp-less'</span>),</div><div class="line">    livereload = <span class="built_in">require</span>(<span class="string">'gulp-livereload'</span>);</div><div class="line"> </div><div class="line">gulp.task(<span class="string">'less'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src(<span class="string">'src/less/*.less'</span>)</div><div class="line">        .pipe(less())</div><div class="line">        .pipe(gulp.dest(<span class="string">'src/css'</span>))</div><div class="line">        .pipe(livereload());</div><div class="line">&#125;);</div><div class="line"> </div><div class="line"><span class="comment">//特别注意：若编译less的时候，同时执行其他操作，有可能引起页面刷新，而不是将样式植入页面</span></div><div class="line"><span class="comment">//例如下面任务同时生成sourcemap：</span></div><div class="line"><span class="comment">//var sourcemaps = require('gulp-sourcemaps');</span></div><div class="line"><span class="comment">//gulp.task('less', function () &#123;</span></div><div class="line"><span class="comment">//    gulp.src(['src/less/*.less'])</span></div><div class="line"><span class="comment">//        .pipe(sourcemaps.init())</span></div><div class="line"><span class="comment">//        .pipe(less())</span></div><div class="line"><span class="comment">//        .pipe(sourcemaps.write('./'))</span></div><div class="line"><span class="comment">//        .pipe(gulp.dest('src/css'))</span></div><div class="line"><span class="comment">//        .pipe(livereload());</span></div><div class="line"><span class="comment">//&#125;);</span></div><div class="line"> </div><div class="line">gulp.task(<span class="string">'watch'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    livereload.listen();</div><div class="line">    gulp.watch(<span class="string">'src/less/**/*.less'</span>, [<span class="string">'less'</span>]);</div><div class="line">&#125;);</div><div class="line"></div></pre></td></tr></table></figure><br>执行代码 gulp watch</p>
+<h2 id="配置gulp-livereload-自动刷新"><a href="#配置gulp-livereload-自动刷新" class="headerlink" title="配置gulp-livereload 自动刷新"></a>配置gulp-livereload 自动刷新</h2><p>代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    less = <span class="built_in">require</span>(<span class="string">'gulp-less'</span>),</div><div class="line">    livereload = <span class="built_in">require</span>(<span class="string">'gulp-livereload'</span>);</div><div class="line"> </div><div class="line">gulp.task(<span class="string">'less'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src(<span class="string">'src/less/*.less'</span>)</div><div class="line">        .pipe(less())</div><div class="line">        .pipe(gulp.dest(<span class="string">'src/css'</span>))</div><div class="line">        .pipe(livereload());</div><div class="line">&#125;);</div><div class="line"> </div><div class="line"><span class="comment">//特别注意：若编译less的时候，同时执行其他操作，有可能引起页面刷新，而不是将样式植入页面</span></div><div class="line"><span class="comment">//例如下面任务同时生成sourcemap：</span></div><div class="line"><span class="comment">//var sourcemaps = require('gulp-sourcemaps');</span></div><div class="line"><span class="comment">//gulp.task('less', function () &#123;</span></div><div class="line"><span class="comment">//    gulp.src(['src/less/*.less'])</span></div><div class="line"><span class="comment">//        .pipe(sourcemaps.init())</span></div><div class="line"><span class="comment">//        .pipe(less())</span></div><div class="line"><span class="comment">//        .pipe(sourcemaps.write('./'))</span></div><div class="line"><span class="comment">//        .pipe(gulp.dest('src/css'))</span></div><div class="line"><span class="comment">//        .pipe(livereload());</span></div><div class="line"><span class="comment">//&#125;);</span></div><div class="line"> </div><div class="line">gulp.task(<span class="string">'watch'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    livereload.listen();</div><div class="line">    gulp.watch(<span class="string">'src/less/**/*.less'</span>, [<span class="string">'less'</span>]);</div><div class="line">&#125;);</div><div class="line"></div></pre></td></tr></table></figure><br>执行代码 gulp watch</p>
 
           
         
@@ -640,6 +640,213 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="hack-jay.github.io/2017/08/10/js算法与数据结构-双向链表/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="H-J">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小雨滴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/10/js算法与数据结构-双向链表/" itemprop="url">
+                  js算法与数据结构-双向链表
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-10T09:38:55+08:00">
+                2017-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h2><p>双向链表具有单链表的所有功能，并将其扩展为在链表中可以进行双向遍历。 换句话说，我们可从链表中第一个节点遍历到到最后一个节点；也可以从最后一个节点遍历到第一个节点。</p>
+<p>在本节中，我们将重点关注双向链表和单链列表之间的差异。</p>
+<h2 id="双向链表的操作"><a href="#双向链表的操作" class="headerlink" title="双向链表的操作"></a>双向链表的操作</h2><p>我们的链表将包括两个构造函数：Node和DoublyList。看看他们是怎样运作的。</p>
+<h3 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h3><p>data 存储数据。<br>next 指向链表中下一个节点的指针。<br>previous 指向链表中前一个节点的指针。<br>DoublyList</p>
+<p>_length 保存链表中节点的个数<br>head 指定一个节点作为链表的头节点<br>tail 指定一个节点作为链表的尾节点<br>add(value) 向链表中添加一个节点<br>searchNodeAt(position) 找到在列表中指定位置 n 上的节点<br>remove(position) 删除链表中指定位置上的节点<br>双向链表的实现<br>现在开始写代码！</p>
+<p>在实现中，将会创建一个名为Node的构造函数：</p>
+<p>function Node(value) {<br>    this.data = value;<br>    this.previous = null;<br>    this.next = null;<br>}<br>想要实现双向链表的双向遍历，我们需要指向链表两个方向的属性。这些属性被命名为previous和next。</p>
+<p>接下来，我们需要实现DoublyList并添加三个属性：_length，head和tail。</p>
+<p>与单链表不同，双向链表包含对链表开头和结尾节点的引用。 由于DoublyList刚被实例化时并不包含任何节点，所以head和tail的默认值都被设置为null。</p>
+<p>function DoublyList() {<br>    this._length = 0;<br>    this.head = null;<br>    this.tail = null;<br>}</p>
+<h2 id="双向链表的方法"><a href="#双向链表的方法" class="headerlink" title="双向链表的方法"></a>双向链表的方法</h2><p>接下来我们讨论以下方法：add(value), remove(position), 和 searchNodeAt(position)。所有这些方法都用于单链表; 然而，它们必须备重写为可以双向遍历。</p>
+<h2 id="方法1-3-add-value"><a href="#方法1-3-add-value" class="headerlink" title="方法1/3 add(value)"></a>方法1/3 add(value)</h2><p>DoublyList.prototype.add = function(value) {<br>    var node = new Node(value);</p>
+<pre><code>if (this._length) {
+    this.tail.next = node;
+    node.previous = this.tail;
+    this.tail = node;
+} else {
+    this.head = node;
+    this.tail = node;
+}
+
+this._length++;
+
+return node;
+</code></pre><p>};</p>
+<p>在这个方法中，存在两种可能。首先，如果链表是空的，则给它的head和tail分配节点。其次，如果链表中已经存在节点，则查找链表的尾部并把心节点分配给tail.next；同样，我们需要配置新的尾部以供进行双向遍历。换句话说，我们需要把tail.previous设置为原来的尾部。</p>
+<h2 id="方法2-3-searchNodeAt-position"><a href="#方法2-3-searchNodeAt-position" class="headerlink" title="方法2/3 searchNodeAt(position)"></a>方法2/3 searchNodeAt(position)</h2><p>searchNodeAt(position)的实现与单链表相同。 如果你忘记了如何实现它，请通过下面的代码回忆：</p>
+<p>DoublyList.prototype.searchNodeAt = function(position) {<br>    var currentNode = this.head,<br>        length = this._length,<br>        count = 1,<br>        message = {failure: ‘Failure: non-existent node in this list.’};</p>
+<pre><code>// 1st use-case: an invalid position 
+if (length === 0 || position &lt; 1 || position &gt; length) {
+    throw new Error(message.failure);
+}
+
+// 2nd use-case: a valid position 
+while (count &lt; position) {
+    currentNode = currentNode.next;
+    count++;
+}
+
+return currentNode;
+</code></pre><p>};</p>
+<h2 id="方法3-3-remove-position"><a href="#方法3-3-remove-position" class="headerlink" title="方法3/3 remove(position)"></a>方法3/3 remove(position)</h2><p>理解这个方法是最具挑战性的。我先写出代码，然后再解释它。</p>
+<p>DoublyList.prototype.remove = function(position) {<br>    var currentNode = this.head,<br>        length = this._length,<br>        count = 1,<br>        message = {failure: ‘Failure: non-existent node in this list.’},<br>        beforeNodeToDelete = null,<br>        nodeToDelete = null,<br>        deletedNode = null;</p>
+<pre><code>// 1st use-case: an invalid position
+if (length === 0 || position &lt; 1 || position &gt; length) {
+    throw new Error(message.failure);
+}
+
+// 2nd use-case: the first node is removed
+if (position === 1) {
+    this.head = currentNode.next;
+
+    // 2nd use-case: there is a second node
+    if (!this.head) {
+        this.head.previous = null;
+    // 2nd use-case: there is no second node
+    } else {
+        this.tail = null;
+    }
+
+// 3rd use-case: the last node is removed
+} else if (position === this._length) {
+    this.tail = this.tail.previous;
+    this.tail.next = null;
+// 4th use-case: a middle node is removed
+} else {
+    while (count &lt; position) {
+        currentNode = currentNode.next;
+        count++;
+    }
+
+    beforeNodeToDelete = currentNode.previous;
+    nodeToDelete = currentNode;
+    afterNodeToDelete = currentNode.next;
+
+    beforeNodeToDelete.next = afterNodeToDelete;
+    afterNodeToDelete.previous = beforeNodeToDelete;
+    deletedNode = nodeToDelete;
+    nodeToDelete = null;
+}
+
+this._length--;
+
+return message.success;
+</code></pre><p>};<br>remove(position) 处理以下四种情况：</p>
+<p>如果remove(position)的参数传递的位置存在, 将会抛出一个错误。<br>如果remove(position)的参数传递的位置是链表的第一个节点（head），将把head赋值给deletedNode，然后把head重新分配到链表中的下一个节点。 此时，我们必须考虑链表中否存在多个节点。 如果答案为否，头部将被分配为null，之后进入if-else语句的if部分。 在if的代码中，还必须将tail设置为null —— 换句话说，我们返回到一个空的双向链表的初始状态。如果删除列表中的第一个节点，并且链表中存在多个节点，那么我们输入if-else语句的else部分。 在这种情况下，我们必须正确地将head的previous属性设置为null —— 在链表的头前面是没有节点的。<br>如果remove(position)的参数传递的位置是链表的尾部，首先把tail赋值给deletedNode，然后tail被重新赋值为尾部之前的那个节点，最后新尾部后面没有其他节点，需要将其next值设置为null。<br>这里发生了很多事情，所以我将重点关注逻辑，而不是每一行代码。 一旦CurrentNode指向的节点是将要被remove(position)删除的节点时，就退出while循环。这时我们把nodeToDelete之后的节点重新赋值给beforeNodeToDelete.next。相应的， 把nodeToDelete之前的节点重新赋值给afterNodeToDelete.previous。——换句话说，我们把指向已删除节点的指针，改为指向正确的节点。最后，把nodeToDelete赋值为null。<br>最后，把链表的长度减1，返回deletedNode。</p>
+<p>以上摘自网上素材</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="hack-jay.github.io/2017/08/10/js算法与数据结构-栈/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -838,213 +1045,6 @@
         
           
             
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="hack-jay.github.io/2017/08/10/js算法与数据结构-双向链表/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="H-J">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小雨滴">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/10/js算法与数据结构-双向链表/" itemprop="url">
-                  js算法与数据结构-双向链表
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-10T09:38:55+08:00">
-                2017-08-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h2><p>双向链表具有单链表的所有功能，并将其扩展为在链表中可以进行双向遍历。 换句话说，我们可从链表中第一个节点遍历到到最后一个节点；也可以从最后一个节点遍历到第一个节点。</p>
-<p>在本节中，我们将重点关注双向链表和单链列表之间的差异。</p>
-<h2 id="双向链表的操作"><a href="#双向链表的操作" class="headerlink" title="双向链表的操作"></a>双向链表的操作</h2><p>我们的链表将包括两个构造函数：Node和DoublyList。看看他们是怎样运作的。</p>
-<h3 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h3><p>data 存储数据。<br>next 指向链表中下一个节点的指针。<br>previous 指向链表中前一个节点的指针。<br>DoublyList</p>
-<p>_length 保存链表中节点的个数<br>head 指定一个节点作为链表的头节点<br>tail 指定一个节点作为链表的尾节点<br>add(value) 向链表中添加一个节点<br>searchNodeAt(position) 找到在列表中指定位置 n 上的节点<br>remove(position) 删除链表中指定位置上的节点<br>双向链表的实现<br>现在开始写代码！</p>
-<p>在实现中，将会创建一个名为Node的构造函数：</p>
-<p>function Node(value) {<br>    this.data = value;<br>    this.previous = null;<br>    this.next = null;<br>}<br>想要实现双向链表的双向遍历，我们需要指向链表两个方向的属性。这些属性被命名为previous和next。</p>
-<p>接下来，我们需要实现DoublyList并添加三个属性：_length，head和tail。</p>
-<p>与单链表不同，双向链表包含对链表开头和结尾节点的引用。 由于DoublyList刚被实例化时并不包含任何节点，所以head和tail的默认值都被设置为null。</p>
-<p>function DoublyList() {<br>    this._length = 0;<br>    this.head = null;<br>    this.tail = null;<br>}</p>
-<h2 id="双向链表的方法"><a href="#双向链表的方法" class="headerlink" title="双向链表的方法"></a>双向链表的方法</h2><p>接下来我们讨论以下方法：add(value), remove(position), 和 searchNodeAt(position)。所有这些方法都用于单链表; 然而，它们必须备重写为可以双向遍历。</p>
-<h2 id="方法1-3-add-value"><a href="#方法1-3-add-value" class="headerlink" title="方法1/3 add(value)"></a>方法1/3 add(value)</h2><p>DoublyList.prototype.add = function(value) {<br>    var node = new Node(value);</p>
-<pre><code>if (this._length) {
-    this.tail.next = node;
-    node.previous = this.tail;
-    this.tail = node;
-} else {
-    this.head = node;
-    this.tail = node;
-}
-
-this._length++;
-
-return node;
-</code></pre><p>};</p>
-<p>在这个方法中，存在两种可能。首先，如果链表是空的，则给它的head和tail分配节点。其次，如果链表中已经存在节点，则查找链表的尾部并把心节点分配给tail.next；同样，我们需要配置新的尾部以供进行双向遍历。换句话说，我们需要把tail.previous设置为原来的尾部。</p>
-<h2 id="方法2-3-searchNodeAt-position"><a href="#方法2-3-searchNodeAt-position" class="headerlink" title="方法2/3 searchNodeAt(position)"></a>方法2/3 searchNodeAt(position)</h2><p>searchNodeAt(position)的实现与单链表相同。 如果你忘记了如何实现它，请通过下面的代码回忆：</p>
-<p>DoublyList.prototype.searchNodeAt = function(position) {<br>    var currentNode = this.head,<br>        length = this._length,<br>        count = 1,<br>        message = {failure: ‘Failure: non-existent node in this list.’};</p>
-<pre><code>// 1st use-case: an invalid position 
-if (length === 0 || position &lt; 1 || position &gt; length) {
-    throw new Error(message.failure);
-}
-
-// 2nd use-case: a valid position 
-while (count &lt; position) {
-    currentNode = currentNode.next;
-    count++;
-}
-
-return currentNode;
-</code></pre><p>};</p>
-<h2 id="方法3-3-remove-position"><a href="#方法3-3-remove-position" class="headerlink" title="方法3/3 remove(position)"></a>方法3/3 remove(position)</h2><p>理解这个方法是最具挑战性的。我先写出代码，然后再解释它。</p>
-<p>DoublyList.prototype.remove = function(position) {<br>    var currentNode = this.head,<br>        length = this._length,<br>        count = 1,<br>        message = {failure: ‘Failure: non-existent node in this list.’},<br>        beforeNodeToDelete = null,<br>        nodeToDelete = null,<br>        deletedNode = null;</p>
-<pre><code>// 1st use-case: an invalid position
-if (length === 0 || position &lt; 1 || position &gt; length) {
-    throw new Error(message.failure);
-}
-
-// 2nd use-case: the first node is removed
-if (position === 1) {
-    this.head = currentNode.next;
-
-    // 2nd use-case: there is a second node
-    if (!this.head) {
-        this.head.previous = null;
-    // 2nd use-case: there is no second node
-    } else {
-        this.tail = null;
-    }
-
-// 3rd use-case: the last node is removed
-} else if (position === this._length) {
-    this.tail = this.tail.previous;
-    this.tail.next = null;
-// 4th use-case: a middle node is removed
-} else {
-    while (count &lt; position) {
-        currentNode = currentNode.next;
-        count++;
-    }
-
-    beforeNodeToDelete = currentNode.previous;
-    nodeToDelete = currentNode;
-    afterNodeToDelete = currentNode.next;
-
-    beforeNodeToDelete.next = afterNodeToDelete;
-    afterNodeToDelete.previous = beforeNodeToDelete;
-    deletedNode = nodeToDelete;
-    nodeToDelete = null;
-}
-
-this._length--;
-
-return message.success;
-</code></pre><p>};<br>remove(position) 处理以下四种情况：</p>
-<p>如果remove(position)的参数传递的位置存在, 将会抛出一个错误。<br>如果remove(position)的参数传递的位置是链表的第一个节点（head），将把head赋值给deletedNode，然后把head重新分配到链表中的下一个节点。 此时，我们必须考虑链表中否存在多个节点。 如果答案为否，头部将被分配为null，之后进入if-else语句的if部分。 在if的代码中，还必须将tail设置为null —— 换句话说，我们返回到一个空的双向链表的初始状态。如果删除列表中的第一个节点，并且链表中存在多个节点，那么我们输入if-else语句的else部分。 在这种情况下，我们必须正确地将head的previous属性设置为null —— 在链表的头前面是没有节点的。<br>如果remove(position)的参数传递的位置是链表的尾部，首先把tail赋值给deletedNode，然后tail被重新赋值为尾部之前的那个节点，最后新尾部后面没有其他节点，需要将其next值设置为null。<br>这里发生了很多事情，所以我将重点关注逻辑，而不是每一行代码。 一旦CurrentNode指向的节点是将要被remove(position)删除的节点时，就退出while循环。这时我们把nodeToDelete之后的节点重新赋值给beforeNodeToDelete.next。相应的， 把nodeToDelete之前的节点重新赋值给afterNodeToDelete.previous。——换句话说，我们把指向已删除节点的指针，改为指向正确的节点。最后，把nodeToDelete赋值为null。<br>最后，把链表的长度减1，返回deletedNode。</p>
-<p>以上摘自网上素材</p>
-
           
         
       
