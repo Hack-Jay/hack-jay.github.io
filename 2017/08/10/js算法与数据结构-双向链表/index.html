@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="hexo," />
 
 
 
@@ -88,12 +88,13 @@
 
 
 <meta name="description" content="双向链表双向链表具有单链表的所有功能，并将其扩展为在链表中可以进行双向遍历。 换句话说，我们可从链表中第一个节点遍历到到最后一个节点；也可以从最后一个节点遍历到第一个节点。 在本节中，我们将重点关注双向链表和单链列表之间的差异。 双向链表的操作我们的链表将包括两个构造函数：Node和DoublyList。看看他们是怎样运作的。 Nodedata 存储数据。next 指向链表中下一个节点的指针。pr">
+<meta name="keywords" content="hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js算法与数据结构-双向链表">
 <meta property="og:url" content="hack-jay.github.io/2017/08/10/js算法与数据结构-双向链表/index.html">
 <meta property="og:site_name" content="小雨滴">
 <meta property="og:description" content="双向链表双向链表具有单链表的所有功能，并将其扩展为在链表中可以进行双向遍历。 换句话说，我们可从链表中第一个节点遍历到到最后一个节点；也可以从最后一个节点遍历到第一个节点。 在本节中，我们将重点关注双向链表和单链列表之间的差异。 双向链表的操作我们的链表将包括两个构造函数：Node和DoublyList。看看他们是怎样运作的。 Nodedata 存储数据。next 指向链表中下一个节点的指针。pr">
-<meta property="og:updated_time" content="2017-08-10T06:02:57.066Z">
+<meta property="og:updated_time" content="2017-11-09T03:26:47.641Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js算法与数据结构-双向链表">
 <meta name="twitter:description" content="双向链表双向链表具有单链表的所有功能，并将其扩展为在链表中可以进行双向遍历。 换句话说，我们可从链表中第一个节点遍历到到最后一个节点；也可以从最后一个节点遍历到第一个节点。 在本节中，我们将重点关注双向链表和单链列表之间的差异。 双向链表的操作我们的链表将包括两个构造函数：Node和DoublyList。看看他们是怎样运作的。 Nodedata 存储数据。next 指向链表中下一个节点的指针。pr">
@@ -201,6 +202,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
@@ -295,6 +306,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js算法/" itemprop="url" rel="index">
+                    <span itemprop="name">js算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -435,6 +468,12 @@ return message.success;
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/hexo/" rel="tag"># hexo</a>
+          
+        </div>
+      
 
       
         
@@ -444,8 +483,8 @@ return message.success;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/10/js算法与数据结构-栈/" rel="next" title="js算法与数据结构-栈">
-                <i class="fa fa-chevron-left"></i> js算法与数据结构-栈
+              <a href="/2017/08/10/js算法与数据结构-队列/" rel="next" title="js算法与数据结构-队列">
+                <i class="fa fa-chevron-left"></i> js算法与数据结构-队列
               </a>
             
           </div>
@@ -454,8 +493,8 @@ return message.success;
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/10/js算法与数据结构-单向链表/" rel="prev" title="js算法与数据结构-单向链表">
-                js算法与数据结构-单向链表 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/08/10/js算法与数据结构-栈/" rel="prev" title="js算法与数据结构-栈">
+                js算法与数据结构-栈 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -528,14 +567,32 @@ return message.success;
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
 
           
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">Kategorien</span>
+              </a>
+            </div>
+          
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
           
 
         </nav>

@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="hexo," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -87,17 +87,16 @@
 
 
 
-<meta name="description" content="如果你想要创建一个窗体,这个窗体可能是一个div,或者是一个iframe，那么就可以用到封装的惰性单体，如下代码所示： 1234567891011121314151617181920212223242526272829303132// 创建divvar createWindow = function() &amp;#123;    var div = document.createElement(&quot;div">
-<meta name="keywords" content="hexo">
+<meta name="description" content="Closure 闭包">
 <meta property="og:type" content="article">
-<meta property="og:title" content="js--单体模式2">
-<meta property="og:url" content="hack-jay.github.io/2017/08/09/js-单体模式2/index.html">
+<meta property="og:title" content="随便理解js----闭包">
+<meta property="og:url" content="hack-jay.github.io/2017/10/17/随便理解js-闭包/index.html">
 <meta property="og:site_name" content="小雨滴">
-<meta property="og:description" content="如果你想要创建一个窗体,这个窗体可能是一个div,或者是一个iframe，那么就可以用到封装的惰性单体，如下代码所示： 1234567891011121314151617181920212223242526272829303132// 创建divvar createWindow = function() &amp;#123;    var div = document.createElement(&quot;div">
-<meta property="og:updated_time" content="2017-11-09T03:28:45.864Z">
+<meta property="og:description" content="Closure 闭包">
+<meta property="og:updated_time" content="2017-10-17T05:58:13.140Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js--单体模式2">
-<meta name="twitter:description" content="如果你想要创建一个窗体,这个窗体可能是一个div,或者是一个iframe，那么就可以用到封装的惰性单体，如下代码所示： 1234567891011121314151617181920212223242526272829303132// 创建divvar createWindow = function() &amp;#123;    var div = document.createElement(&quot;div">
+<meta name="twitter:title" content="随便理解js----闭包">
+<meta name="twitter:description" content="Closure 闭包">
 
 
 
@@ -125,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="hack-jay.github.io/2017/08/09/js-单体模式2/"/>
+  <link rel="canonical" href="hack-jay.github.io/2017/10/17/随便理解js-闭包/"/>
 
 
 
 
 
-  <title> js--单体模式2 | 小雨滴 </title>
+  <title> 随便理解js----闭包 | 小雨滴 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -260,7 +259,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="hack-jay.github.io/2017/08/09/js-单体模式2/">
+    <link itemprop="mainEntityOfPage" href="hack-jay.github.io/2017/10/17/随便理解js-闭包/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="H-J">
@@ -281,7 +280,7 @@
             
             
               
-                js--单体模式2
+                随便理解js----闭包
               
             
           </h1>
@@ -296,8 +295,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-09T11:40:54+08:00">
-                2017-08-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-17T13:57:24+08:00">
+                2017-10-17
               </time>
             
 
@@ -306,28 +305,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/js设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">js设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -354,10 +331,7 @@
       
 
       
-        <p>如果你想要创建一个窗体,这个窗体可能是一个div,或者是一个iframe，那么就可以用到封装的惰性单体，<br>如下代码所示：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建div</span></div><div class="line"><span class="keyword">var</span> createWindow = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> div = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</div><div class="line">    div.innerHTML = <span class="string">"我是弹窗内容"</span>;</div><div class="line">    div.style.display = <span class="string">'none'</span>;</div><div class="line">    <span class="built_in">document</span>.body.appendChild(div);</div><div class="line">    <span class="keyword">return</span> div;</div><div class="line">&#125;;</div><div class="line"><span class="comment">// 创建iframe</span></div><div class="line"><span class="keyword">var</span> createIframe = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> iframe = <span class="built_in">document</span>.createElement(<span class="string">"iframe"</span>);</div><div class="line">    <span class="built_in">document</span>.body.appendChild(iframe);</div><div class="line">    <span class="keyword">return</span> iframe;</div><div class="line">&#125;;</div><div class="line"><span class="comment">// 获取实例的封装代码（闭包函数）</span></div><div class="line"><span class="keyword">var</span> getInstance = <span class="function"><span class="keyword">function</span>(<span class="params">fn</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> result;                <span class="comment">//result记录窗体的对象，这里是闭包环境，不会被销毁</span></div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> result || (result = fn.call(<span class="keyword">this</span>, <span class="built_in">arguments</span>));</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"><span class="comment">// 测试创建div</span></div><div class="line"><span class="keyword">var</span> createSingleDiv = getInstance(createWindow);</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">"Id"</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> win = createSingleDiv();</div><div class="line">    win.style.display = <span class="string">"block"</span>;</div><div class="line">&#125;;</div><div class="line"><span class="comment">// 测试创建iframe</span></div><div class="line"><span class="keyword">var</span> createSingleIframe = getInstance(createIframe);</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">"Id"</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> win = createSingleIframe();</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>在上述代码中,createWindow 和 createIframe是两个创建窗体的函数封装，这里面主要是窗体的创建过程，最终返回这个创建的对象，getInstance函数是这个单体的重点，在里面设置result,来标识是否有这个窗体对象，<br>return   result || (result = fn.call(this, arguments))<br>如果有就返回，没有就调用窗体的创建对象创建一个并赋值个result返回，这样下次就会直接返回result了</p>
-
+        <h2 id="Closure-闭包"><a href="#Closure-闭包" class="headerlink" title="Closure 闭包"></a>Closure 闭包</h2>
       
     </div>
 
@@ -384,12 +358,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/hexo/" rel="tag"># hexo</a>
-          
-        </div>
-      
 
       
         
@@ -399,8 +367,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/04/js-单体模式/" rel="next" title="js--单体模式">
-                <i class="fa fa-chevron-left"></i> js--单体模式
+              <a href="/2017/10/16/Gulp入门配置-1/" rel="next" title="Gulp入门配置">
+                <i class="fa fa-chevron-left"></i> Gulp入门配置
               </a>
             
           </div>
@@ -408,10 +376,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/10/js算法与数据结构-队列/" rel="prev" title="js算法与数据结构-队列">
-                js算法与数据结构-队列 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -458,8 +422,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -521,6 +494,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Closure-闭包"><span class="nav-number">1.</span> <span class="nav-text">Closure 闭包</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
