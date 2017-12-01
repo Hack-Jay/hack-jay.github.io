@@ -90,16 +90,16 @@
 
 
 
-<meta name="description" content="Closure 闭包">
+<meta name="description" content="##Webpack 基本配置github地址:https://github.com/Hack-Jay/Webpack.git webpack 命令 :webpack main.js  bundle.js一般会新建webpack 配置文件 webpack.config.js1234567891011121314151617181920212223242526272829303132333435363">
 <meta property="og:type" content="article">
-<meta property="og:title" content="随便理解js----闭包">
-<meta property="og:url" content="hack-jay.github.io/2017/10/17/随便理解js-闭包/index.html">
+<meta property="og:title" content="Webpack配置">
+<meta property="og:url" content="hack-jay.github.io/2017/12/01/Webpack配置/index.html">
 <meta property="og:site_name" content="小雨滴">
-<meta property="og:description" content="Closure 闭包">
-<meta property="og:updated_time" content="2017-10-17T05:58:13.140Z">
+<meta property="og:description" content="##Webpack 基本配置github地址:https://github.com/Hack-Jay/Webpack.git webpack 命令 :webpack main.js  bundle.js一般会新建webpack 配置文件 webpack.config.js1234567891011121314151617181920212223242526272829303132333435363">
+<meta property="og:updated_time" content="2017-12-01T02:30:11.594Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="随便理解js----闭包">
-<meta name="twitter:description" content="Closure 闭包">
+<meta name="twitter:title" content="Webpack配置">
+<meta name="twitter:description" content="##Webpack 基本配置github地址:https://github.com/Hack-Jay/Webpack.git webpack 命令 :webpack main.js  bundle.js一般会新建webpack 配置文件 webpack.config.js1234567891011121314151617181920212223242526272829303132333435363">
 
 
 
@@ -127,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="hack-jay.github.io/2017/10/17/随便理解js-闭包/"/>
+  <link rel="canonical" href="hack-jay.github.io/2017/12/01/Webpack配置/"/>
 
 
 
 
 
-  <title> 随便理解js----闭包 | 小雨滴 </title>
+  <title> Webpack配置 | 小雨滴 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="hack-jay.github.io/2017/10/17/随便理解js-闭包/">
+    <link itemprop="mainEntityOfPage" href="hack-jay.github.io/2017/12/01/Webpack配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="H-J">
@@ -283,7 +283,7 @@
             
             
               
-                随便理解js----闭包
+                Webpack配置
               
             
           </h1>
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-17T13:57:24+08:00">
-                2017-10-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-01T10:07:48+08:00">
+                2017-12-01
               </time>
             
 
@@ -334,7 +334,10 @@
       
 
       
-        <h2 id="Closure-闭包"><a href="#Closure-闭包" class="headerlink" title="Closure 闭包"></a>Closure 闭包</h2>
+        <p>##Webpack 基本配置<br>github地址:<a href="https://github.com/Hack-Jay/Webpack.git" target="_blank" rel="external">https://github.com/Hack-Jay/Webpack.git</a></p>
+<p>webpack 命令 :webpack main.js  bundle.js<br>一般会新建webpack 配置文件 webpack.config.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    entry: __dirname + <span class="string">"/app/main.js"</span>, <span class="comment">//已多次提及的唯一入口文件</span></div><div class="line">    output: &#123;</div><div class="line">        path: __dirname + <span class="string">"/build"</span>,</div><div class="line">        filename: <span class="string">"bundle.js"</span></div><div class="line">    &#125;,</div><div class="line">    devtool: <span class="string">'eval-source-map'</span>,</div><div class="line">    devServer: &#123;</div><div class="line">        contentBase: <span class="string">"./public"</span>, <span class="comment">//本地服务器所加载的页面所在的目录</span></div><div class="line">        historyApiFallback: <span class="literal">true</span>, <span class="comment">//不跳转</span></div><div class="line">        inline: <span class="literal">true</span>,<span class="comment">//实时刷新</span></div><div class="line">        hot: <span class="literal">true</span></div><div class="line">    &#125;,</div><div class="line">    <span class="built_in">module</span>: &#123;</div><div class="line">        rules: </div><div class="line">        [   &#123;</div><div class="line">                test: <span class="regexp">/(\.jsx|\.js)$/</span>,</div><div class="line">                use: &#123;</div><div class="line">                    loader: <span class="string">"babel-loader"</span>,</div><div class="line">                    options:&#123;</div><div class="line">                        presets:[</div><div class="line">                            <span class="string">'es2015'</span>,<span class="string">'react'</span></div><div class="line">                        ]</div><div class="line">                    &#125;</div><div class="line">                &#125;,</div><div class="line">                exclude: <span class="regexp">/node_modules/</span></div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">                test: <span class="regexp">/\.css$/</span>,</div><div class="line">                use: [&#123;</div><div class="line">                    loader: <span class="string">"style-loader"</span></div><div class="line">                &#125;, &#123;</div><div class="line">                    loader: <span class="string">"css-loader"</span>,</div><div class="line">                    options: &#123;</div><div class="line">                        modules: <span class="literal">true</span></div><div class="line">                    &#125;</div><div class="line">                &#125;]</div><div class="line">            &#125;,</div><div class="line">           </div><div class="line">        ]</div><div class="line">    &#125;,</div><div class="line">    plugins: [</div><div class="line">        <span class="keyword">new</span> webpack.BannerPlugin(<span class="string">'版权所有，翻版必究'</span>),</div><div class="line">        <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</div><div class="line">            template: __dirname + <span class="string">"/app/index.tmpl.html"</span> <span class="comment">//new 一个这个插件的实例，并传入相关的参数</span></div><div class="line">        &#125;),</div><div class="line">        <span class="keyword">new</span> webpack.HotModuleReplacementPlugin() <span class="comment">//热加载插件</span></div><div class="line">    ],</div><div class="line">&#125;;</div><div class="line"> </div></pre></td></tr></table></figure></p>
+<p> entry 是项目的入口文件<br> output 是打包后的输出文件<br> devtool 是让你更好的开发调试，发布后的源代码映射<br> devServer : 加载一个本地服务器，可以不用刷新更新<br> Loaders：加载转换！ 可以通过调用不同的外部脚本或工具，实现对文件的处理<br>        如：把less转换为css, 把Es6，Es7转换为兼容的js ,把JSX转换为js文件等<br>        Loaders需要单独npm安装并在modules关键字下进行配置</p>
+
       
     </div>
 
@@ -370,8 +373,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/16/Gulp入门配置-1/" rel="next" title="Gulp入门配置">
-                <i class="fa fa-chevron-left"></i> Gulp入门配置
+              <a href="/2017/11/23/深入React和Redux总结/" rel="next" title="深入React和Redux总结">
+                <i class="fa fa-chevron-left"></i> 深入React和Redux总结
               </a>
             
           </div>
@@ -379,10 +382,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/23/深入React和Redux总结/" rel="prev" title="深入React和Redux总结">
-                深入React和Redux总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -429,17 +428,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -501,22 +491,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Closure-闭包"><span class="nav-number">1.</span> <span class="nav-text">Closure 闭包</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

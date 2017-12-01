@@ -90,13 +90,16 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="hack-jay.github.io/categories/index.html">
+<meta name="description" content="##单向数据流 12345678910111213141516171819// 当前应用的 state（todos 列表和选中的过滤器）let previousState = &amp;#123;  visibleTodoFilter: &apos;SHOW_ALL&apos;,  todos: [    &amp;#123;      text: &apos;Read the docs.&apos;,      complete: false">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入React和Redux总结">
+<meta property="og:url" content="hack-jay.github.io/2017/11/23/深入React和Redux总结/index.html">
 <meta property="og:site_name" content="小雨滴">
-<meta property="og:updated_time" content="2017-11-09T03:18:47.803Z">
+<meta property="og:description" content="##单向数据流 12345678910111213141516171819// 当前应用的 state（todos 列表和选中的过滤器）let previousState = &amp;#123;  visibleTodoFilter: &apos;SHOW_ALL&apos;,  todos: [    &amp;#123;      text: &apos;Read the docs.&apos;,      complete: false">
+<meta property="og:updated_time" content="2017-11-24T03:10:54.382Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="categories">
+<meta name="twitter:title" content="深入React和Redux总结">
+<meta name="twitter:description" content="##单向数据流 12345678910111213141516171819// 当前应用的 state（todos 列表和选中的过滤器）let previousState = &amp;#123;  visibleTodoFilter: &apos;SHOW_ALL&apos;,  todos: [    &amp;#123;      text: &apos;Read the docs.&apos;,      complete: false">
 
 
 
@@ -124,19 +127,13 @@
 
 
 
-  <link rel="canonical" href="hack-jay.github.io/categories/"/>
+  <link rel="canonical" href="hack-jay.github.io/2017/11/23/深入React和Redux总结/"/>
 
 
 
 
 
-  <title>
-  
-
-  
-    categories | 小雨滴
-  
-</title>
+  <title> 深入React和Redux总结 | 小雨滴 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -161,7 +158,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -256,25 +253,155 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h1 class="post-title" itemprop="name headline">categories</h1>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="hack-jay.github.io/2017/11/23/深入React和Redux总结/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="H-J">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小雨滴">
+    </span>
 
     
-    
-      <div class="category-all-page">
-        <div class="category-all-title">
-            3 categories in total
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                深入React和Redux总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-23T14:36:05+08:00">
+                2017-11-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
         </div>
-        <div class="category-all">
-          <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/js算法/">js算法</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/js设计模式/">js设计模式</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端工具/">前端工具</a><span class="category-list-count">1</span></li></ul>
-        </div>
-      </div>
+      </header>
     
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>##单向数据流</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 当前应用的 state（todos 列表和选中的过滤器）</span></div><div class="line"><span class="keyword">let</span> previousState = &#123;</div><div class="line">  visibleTodoFilter: <span class="string">'SHOW_ALL'</span>,</div><div class="line">  todos: [</div><div class="line">    &#123;</div><div class="line">      text: <span class="string">'Read the docs.'</span>,</div><div class="line">      complete: <span class="literal">false</span></div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div><div class="line"><span class="comment">// 将要执行的 action（添加一个 todo）</span></div><div class="line"><span class="keyword">let</span> action = &#123;</div><div class="line">  type: <span class="string">'ADD_TODO'</span>,</div><div class="line">  text: <span class="string">'Understand the flow.'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// reducer 返回处理后的应用状态</span></div><div class="line"><span class="keyword">let</span> nextState = todoApp(previousState, action);</div><div class="line"></div></pre></td></tr></table></figure>
+<h2 id="Reducer"><a href="#Reducer" class="headerlink" title="Reducer"></a>Reducer</h2><p> 在 Redux 里，负责响应 action 并修改数据的角色就是 reducer。reducer 本质上是一个函数，<br>其函数签名为  reducer(previousState, action) =&gt; newState 。可以看出，reducer 在处理 action 的<br>同时，还需要接受一个  previousState 参数。所以，reducer 的职责就是根据  previousState 和<br>action 计算出新的  newState </p>
+<h2 id="Store"><a href="#Store" class="headerlink" title="Store"></a>Store</h2><p>Store是数据的管理，是唯一的，通过createStore(reducer,initialvalue)方法生成<br>通过  createStore 方法创建的  store 是一个对象，它本身又包含 4 个方法。<br> getState() ：获取 store 中当前的状态。<br> dispatch(action) ：分发一个 action，并返回这个 action，这是唯一能改变 store 中数据的<br>方式。<br> subscribe(listener) ：注册一个监听者，它在 store 发生变化时被调用。<br> replaceReducer(nextReducer) ：更新当前 store 里的 reducer，一般只会在开发模式中调用<br>该方法。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/17/随便理解js-闭包/" rel="next" title="随便理解js----闭包">
+                <i class="fa fa-chevron-left"></i> 随便理解js----闭包
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/01/Webpack配置/" rel="prev" title="Webpack配置">
+                Webpack配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -283,6 +410,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -302,8 +433,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -365,6 +505,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Reducer"><span class="nav-number">1.</span> <span class="nav-text">Reducer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Store"><span class="nav-number">2.</span> <span class="nav-text">Store</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -484,6 +640,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
